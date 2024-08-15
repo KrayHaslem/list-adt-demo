@@ -10,29 +10,29 @@ class LinkedList:
             print_node = print_node.next
 
     def append(self, new_node):
-        if self.head == None:
+        if self.head == None:  # Empty list
             self.head = new_node
             self.tail = new_node
-        else:
+        else:  # Add new node to tail
             self.tail.next = new_node
             self.tail = new_node
 
     def prepend(self, new_node):
-        if self.head == None:
+        if self.head == None:  # Empty list
             self.head = new_node
             self.tail = new_node
-        else:
+        else:  # Replace head
             new_node.next = self.head
             self.head = new_node
 
     def insert_after(self, current_node, new_node):
-        if self.head == None:
+        if self.head == None:  # Empty list
             self.head = new_node
             self.tail = new_node
-        elif current_node is self.tail:
+        elif current_node is self.tail:  # Replace tail
             self.tail.next = new_node
             self.tail = new_node
-        else:
+        else:  # Add to middle
             new_node.next = current_node.next
             current_node.next = new_node
 
@@ -43,25 +43,25 @@ class LinkedList:
             self.head = succeeding_node
             if succeeding_node == None:  # Removed last item
                 self.tail = None
-        elif current_node.next != None:
+        elif current_node.next != None:  # Current node is not tail
             succeeding_node = current_node.next.next
             current_node.next = succeeding_node
             if succeeding_node == None:  # Removed tail
                 self.tail = current_node
 
-    def insertion_sort_singly_linked(self):
+    def insertion_sort_singly_linked(self):  # Less Efficient with lack of support for reverse traversal with no prev value
         before_current = self.head
         current_node = self.head.next
-        while current_node != None:
+        while current_node != None:  # Traverse list until tail
             next_node = current_node.next
             position = self.find_insertion_position(current_node.data)
-            if position == before_current:
+            if position == before_current:  # Current node correct position
                 before_current = current_node
-            else:
+            else:  # Move current node
                 self.remove_after(before_current)
-                if position == None:
+                if position == None:  # Replace head with current node
                     self.prepend(current_node)
-                else:
+                else:  # Insert into position
                     self.insert_after(position, current_node)
             current_node = next_node
 

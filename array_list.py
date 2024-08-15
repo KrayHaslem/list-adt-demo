@@ -87,6 +87,10 @@ class ArrayList:
             # Update the array's length
             self.length = self.length - 1
 
+            # Remove Remaining values over length
+            for i in range(self.length, self.allocation_size):
+                self.array[i] = None
+
     def sort(self):
         self.array.sort(key=lambda element: (element is None, element))
         # Key happens to the element before sorting, .sort cannot handle none values,
@@ -94,3 +98,40 @@ class ArrayList:
         # others 0, then the sort puts all of the none values to the end as True (1)
         # is greater than false(0) and the other elements get sorted normally based on
         # thier values existing in the second position on the tuple.
+
+    def merge_sort(self):  # chatGPT replacement for sort after multiple attempts and slight modification
+        def merge(left, right):
+            merged = []
+            i = 0
+            j = 0
+
+            while i < len(left) and j < len(right):
+                if left[i] is None:
+                    merged.append(left[i])
+                    i += 1
+                elif right[j] is None:
+                    merged.append(right[j])
+                    j += 1
+                elif left[i] <= right[j]:
+                    merged.append(left[i])
+                    i += 1
+                else:
+                    merged.append(right[j])
+                    j += 1
+
+            merged.extend(left[i:])
+            merged.extend(right[j:])
+            return merged
+
+        # Start with a width of 1 and double the width each iteration
+        width = 1
+        n = len(self.array)
+        while width < n:
+            for i in range(0, n, 2 * width):
+                left = self.array[i:i + width]
+                right = self.array[i + width:i + 2 * width]
+                self.array[i:i + 2 * width] = merge(left, right)
+            width *= 2
+
+        # Insert None values to the end of the list
+        self.array = [x for x in self.array if x is not None] + [None] * (self.allocation_size - self.length)

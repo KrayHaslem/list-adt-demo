@@ -78,52 +78,62 @@ dl_num_list.print_list()
 print()
 pause()
 
+## Array List ADT ##
+
+array_list = ArrayList(4)  # capacity of 4
+
+print("Initial array")
+print("Allocation size: %d, length: %d" % (array_list.allocation_size, array_list.length))
+print(array_list.array)
+pause()
+
+
+for item in [99, 44, 42]:
+    array_list.append(item)
+
+array_list.prepend(66)
+
+print("Full array")
+print("Allocation size: %d, length: %d" % (array_list.allocation_size, array_list.length))
+print(array_list.array)
+pause()
+
+array_list.insert_after(2, 95)
+array_list.insert_after(4, 17)
+
+print("List after adding values: ")
+print("Allocation size: %d, length: %d" % (array_list.allocation_size, array_list.length))
+print(array_list.array)
+
+pause()
+
+array_list.remove_at(0)
+array_list.remove_at(4)
+
+print("List after removing values")
+print("Allocation size: %d, length: %d" % (array_list.allocation_size, array_list.length))
+print(array_list.array)
+
+print()
+pause
+
 ## SORTING##
 
 num_list.insertion_sort_singly_linked()
+print("-- Linked after sort --")
 num_list.print_list()
 
 print()
 pause()
 
 dl_num_list.insertion_sort_doubly_linked()
+print("-- Double Linked after sort --")
 dl_num_list.print_list()
 
 print()
 pause()
 
-my_list = ArrayList(4)
-for item in [3, 2, 84, 18, 91, 6, 19, 12]:
-    my_list.append(item)
-
-print("-- Array before operation --")
-print("Allocation size: %d, length: %d" % (my_list.allocation_size, my_list.length))
-print(my_list.array)
-
-instruction = ["insert_after", 5, 3]
-method = instruction[0]
-if method == "append":
-    item = int(instruction[1])
-    my_list.append(item)
-elif method == "insert_after":
-    index = int(instruction[1])
-    item = int(instruction[2])
-    my_list.insert_after(index, item)
-elif method == "prepend":
-    item = int(instruction[1])
-    my_list.prepend(item)
-elif method == "remove_at":
-    index = int(instruction[1])
-    my_list.remove_at(index)
-elif method == "search":
-    item = int(instruction[1])
-    print("Search result:", my_list.search(item))
-
-print()
-print("-- Array after operation --")
-print("Allocation size: %d, length: %d" % (my_list.allocation_size, my_list.length))
-print(my_list.array)
-
-my_list.sort()
-
-print(my_list.array)
+array_list.sort()
+print("-- Array after sort --")
+print("Allocation size: %d, length: %d" % (array_list.allocation_size, array_list.length))
+print(array_list.array)
