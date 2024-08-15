@@ -1,8 +1,9 @@
-from pause import pause
-from node import Node
-from linked_list import LinkedList
 from double_linked_list import DoubleLinkedList
+from linked_list import LinkedList
 from array_list import ArrayList
+from node import Node
+
+from pause import pause
 
 
 ### LINKED LIST###
