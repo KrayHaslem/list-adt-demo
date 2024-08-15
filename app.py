@@ -116,7 +116,7 @@ print("Allocation size: %d, length: %d" % (array_list.allocation_size, array_lis
 print(array_list.array)
 
 print()
-pause
+pause()
 
 ## SORTING##
 
